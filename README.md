@@ -1,4 +1,6 @@
-# create-svelte
+# Sveltekit socket io
+
+See [Sveltekit and Socket IO](https://linu.us/live-chat-with-sveltekit-and-socketio and https://dev.to/theether0/sveltekit-with-socketio-and-nodejs-285h)
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
