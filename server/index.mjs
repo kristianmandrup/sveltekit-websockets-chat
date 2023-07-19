@@ -1,30 +1,17 @@
+import http from 'http';
 import express from 'express';
-import { createServer } from 'http';
-import { Server } from 'socket.io';
+import injectSocketIO from '../socket-handler.';
+import { handler } from '../build/handler';
 
-import { handler } from '../build/handler.js';
-
-const port = 3000;
 const app = express();
-const server = createServer(app);
+const server = http.createServer(app);
 
-const io = new Server(server);
+// Inject SocketIO
+injectSocketIO(server);
 
-io.on('connection', (socket) => {
-	let username = `User ${Math.round(Math.random() * 999999)}`;
-	io.emit('name', username);
-
-	const message = 'Hello, World 👋';
-	const msg = {
-		from: username,
-		message: message,
-		time: new Date().toLocaleString()
-	};
-	socket.emit('channel:message', msg);
-});
-
-// SvelteKit should handle everything else using Express middleware
-// https://github.com/sveltejs/kit/tree/master/packages/adapter-node#custom-server
+// SvelteKit handlers
 app.use(handler);
 
-server.listen(port);
+server.listen(3000, () => {
+	console.log('Websocket Server running on http://localhost:3000');
+});

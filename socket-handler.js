@@ -2,6 +2,8 @@
 import { Server } from 'socket.io';
 
 // See https://linu.us/live-chat-with-sveltekit-and-socketio and https://dev.to/theether0/sveltekit-with-socketio-and-nodejs-285h
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export default function injectSocketIO(server) {
 	const io = new Server(server);
 
